@@ -1,2 +1,2 @@
-# Learn-Japanese-to-Spanish-Method
-Aprende Hiragana y Katakana al método Español 👌👍
+# Proyecto hecho desde la ironía y la sátira :D
+## Quiero aprender react y me aburro asi que hice este repositorio XD
