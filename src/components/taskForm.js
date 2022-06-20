@@ -1,32 +1,41 @@
 import React, { useState } from "react"
 import {
-  FormControl,
   FormLabel,
   Input,
-  FormHelperText,
+  Button,
+  Textarea
 } from '@chakra-ui/react'
 
 function TaskForm() {
-  // Our "task", represent the task, and we need to call "addTask" to update the value of "task", in first instance, "task" hasn't nothing inside
-  const [ task, addTask ] = useState()
-    
-  const taskSaver = (e) => {
+  // Our "key" and "value", represent at the final an object in the localStorage, and we need to call "setKey" and "addValue" to update the value of that object, in first instance, our object haven't nothing inside
+  const [ task, setTask ] = useState([
+    {"name": "Tarea1", "content": "Contenido de la Tarea 1"}
+  ])
+
+  const saveTask = (e) => {
     e.preventDefault()
-    localStorage.setItem("task", task)
+    localStorage.setItem("task",  JSON.stringify(task))
   }
 
   return (
     <div>
-      <h1>Hello World!</h1>
-      <FormControl>
-        <FormLabel onSubmit={taskSaver}>Email address</FormLabel>
-        <Input type="text"
+      <form 
+      id="TaskForm"
+      onSubmit={saveTask}>
+        <FormLabel>Nombre de la tarea</FormLabel>
+        <Input
+          type={"text"}/* 
           onChange={(change) => {
-            addTask(change.target.value)
-          }}
+            setTask(change.target.value)
+          }} */
         />
-        <FormHelperText>We'll never share your email.</FormHelperText>
-      </FormControl>
+        <FormLabel>Contenido de la tarea</FormLabel>
+        <Textarea/>
+        <Button
+          type="submit"
+          colorScheme={"blue"}
+          marginTop={4}>Añadir tarea</Button>
+      </form>
     </div>
   );
 }

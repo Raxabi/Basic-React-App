@@ -1,13 +1,17 @@
 import React from 'react';
-import TaskForm from "./components/taskForm"
-import Test from "./components/tests/test"
+
+// Another
 import './App.css';
+
+// Components
+import TaskForm from "./components/taskForm"
+import Tasks from './components/renderTask';
 
 function App() {
   return (
     <div>
       <TaskForm/>
-      <Test />
+      <Tasks />
     </div>
   )
 };
