@@ -3,18 +3,17 @@ import {
   FormLabel,
   Input,
   Button,
-  Textarea
+  Textarea,
+  Box
 } from '@chakra-ui/react'
 
-function TaskForm() {
+function TaskMaker({setNewTask}) {
   // Our "key" and "value", represent at the final an object in the localStorage, and we need to call "setKey" and "addValue" to update the value of that object, in first instance, our object haven't nothing inside
-  const [ task, setTask ] = useState([
-    {"name": "Tarea1", "content": "Contenido de la Tarea 1"}
-  ])
+  const [ tasks, setTasks ] = useState([])
 
   const saveTask = (e) => {
     e.preventDefault()
-    localStorage.setItem("task",  JSON.stringify(task))
+    localStorage.setItem("task", setNewTask(tasks))
   }
 
   return (
@@ -22,15 +21,13 @@ function TaskForm() {
       <form 
       id="TaskForm"
       onSubmit={saveTask}>
-        <FormLabel>Nombre de la tarea</FormLabel>
-        <Input
-          type={"text"}/* 
-          onChange={(change) => {
-            setTask(change.target.value)
-          }} */
-        />
         <FormLabel>Contenido de la tarea</FormLabel>
-        <Textarea/>
+        <Textarea
+          type={"text"} 
+          onChange={(change) => {
+            setTasks(change.target.value)
+          }}
+        />
         <Button
           type="submit"
           colorScheme={"blue"}
@@ -40,4 +37,4 @@ function TaskForm() {
   );
 }
 
-export default TaskForm
+export default TaskMaker
