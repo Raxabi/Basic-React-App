@@ -1,19 +1,19 @@
 import React, { useState } from "react"
 import {
   FormLabel,
-  Input,
   Button,
   Textarea,
-  Box
 } from '@chakra-ui/react'
 
-function TaskMaker({setNewTask}) {
-  // Our "key" and "value", represent at the final an object in the localStorage, and we need to call "setKey" and "addValue" to update the value of that object, in first instance, our object haven't nothing inside
-  const [ tasks, setTasks ] = useState([])
+function TaskMaker({AddNewTask}) {
+  // taskMaker receive a prop as argument that is a function
+  const [ incomingTasks, setIncomingTasks ] = useState([])
 
+  // Save the task that was provided by the prop argument
   const saveTask = (e) => {
     e.preventDefault()
-    localStorage.setItem("task", setNewTask(tasks))
+    AddNewTask(incomingTasks)
+    localStorage.setItem("task", incomingTasks)
   }
 
   return (
@@ -25,7 +25,7 @@ function TaskMaker({setNewTask}) {
         <Textarea
           type={"text"} 
           onChange={(change) => {
-            setTasks(change.target.value)
+            setIncomingTasks(change.target.value)
           }}
         />
         <Button
