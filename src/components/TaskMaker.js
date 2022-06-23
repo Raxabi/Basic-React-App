@@ -1,19 +1,24 @@
-import React, { useState } from "react"
+import React, { useState, createRef } from "react"
 import {
   FormLabel,
   Button,
   Textarea,
+  Input
 } from '@chakra-ui/react'
 
+// taskMaker receive two props as argument that are functions, one of them that save tasks and another that delete a task
 function TaskMaker({AddNewTask}) {
-  // taskMaker receive a prop as argument that is a function
+  
   const [ incomingTasks, setIncomingTasks ] = useState([])
+
+  const emptyValue = createRef()
 
   // Save the task that was provided by the prop argument
   const saveTask = (e) => {
     e.preventDefault()
-    AddNewTask(incomingTasks)
+    AddNewTask(incomingTasks) //! 2º Se manda el valor hacia el prop
     localStorage.setItem("task", incomingTasks)
+    emptyValue.current.value = ""
   }
 
   return (
@@ -22,16 +27,18 @@ function TaskMaker({AddNewTask}) {
       id="TaskForm"
       onSubmit={saveTask}>
         <FormLabel>Contenido de la tarea</FormLabel>
-        <Textarea
-          type={"text"} 
+        <Input
+          type={"text"}
           onChange={(change) => {
-            setIncomingTasks(change.target.value)
+            setIncomingTasks(change.target.value) //! 1º Actualiza el valor de incomingTasks con el valor del input
           }}
+          ref={emptyValue}
         />
         <Button
           type="submit"
           colorScheme={"blue"}
-          marginTop={4}>Añadir tarea</Button>
+          marginTop={4}>Añadir tarea
+        </Button>
       </form>
     </div>
   );
