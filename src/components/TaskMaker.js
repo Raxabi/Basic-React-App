@@ -2,7 +2,6 @@ import React, { useState, createRef } from "react"
 import {
   FormLabel,
   Button,
-  Textarea,
   Input
 } from '@chakra-ui/react'
 
