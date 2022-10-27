@@ -18,7 +18,7 @@ function App() {
   ])
 
   //! 3º initialTasks se actualiza con su funcion correspondiente de useState y añade el valor traido desde el prop a un nuevo array copia de initialTasks
-  function AddNewTask(contentOfNewTask) {
+  function addNewTask(contentOfNewTask) {
     setNewInitialTasks(initialTasks.concat([{content: contentOfNewTask}]))
   }
 
@@ -44,7 +44,7 @@ function App() {
       <Center>
         <Text fontSize={"4xl"} mt={"20px"}>Tasklet</Text>
       </Center>
-      <TaskMaker AddNewTask={AddNewTask}/>
+      <TaskMaker AddNewTask={addNewTask}/>
       <TasksRendered initialTasks={initialTasks} deleteNewTask={deleteNewTask}/>
     </Container>
   )
